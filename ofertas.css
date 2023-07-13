@@ -1,5 +1,86 @@
 body {
-    display: grid;
     place-content: center;
-    background-color: rgb(246, 246, 43);
+    display: grid;
+    background-image: url('https://th.bing.com/th/id/OIP.QnPApBBFOg1ogCre4m-CZAAAAA?w=285&h=183&c=7&r=0&o=5&dpr=1.3&pid=1.7');
+    margin: 0;
+}
+
+#titulo-principal {
+    padding: 25px;
+    text-align: center;
+    margin: 0;
+    width: 1484px;
+    background: linear-gradient(limegreen, lightgrey );
+}
+
+#primera-oferta {
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    width: 15rem;
+    padding: 10px;
+    background: linear-gradient(rgb(234, 112, 25), greenyellow);
+    margin: 10px;
+    background-color: c;
+}
+
+#segunda-oferta {
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    width: 15rem;
+    padding: 10px;
+    background: linear-gradient(rgb(234, 175, 64) , rgb(225, 96, 96));
+    margin: 10px;
+}
+
+#tercera-oferta {
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    width: 15rem;
+    padding: 10px;
+    margin: 10px;
+    background: linear-gradient(rgb(158, 83, 228), rgb(96, 241, 241));
+}
+
+#cuarta-oferta {
+    border: 2px solid black;
+    border-radius: 5px;
+    text-align: center;
+    justify-content: center;
+    width: 15rem;
+    padding: 10px;
+    margin: 10px;
+    background: linear-gradient(darksalmon, lightgreen);
+}
+
+#img-especial {
+    height: 45px;
+    width: 42px;
+}
+
+#img-especial-2 {
+    height: 60px;
+    width: 42px;
+}
+
+img {
+    width: 40px;
+}
+
+p {
+    font-size: medium;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    margin-top: 10px;
+} 
+
+.oferta-productos {
+    place-content: center;
+    display: flex;
+    margin: 50px;
+    flex-wrap: wrap;
 }

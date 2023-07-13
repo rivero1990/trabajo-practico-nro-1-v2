@@ -88,6 +88,9 @@ function mostrarProductos() {
   compraRealizada.innerHTML = "";
 
   generaHtmlProductos(cantidadProductos);
+
+  reiniciarSlider();
+  generarBotonesSlider();
   
 }
 
@@ -274,12 +277,39 @@ function slideProductos(direccion) {
   let maxDesplazamiento = (document.querySelectorAll(".productos").length - productosVisibles) * anchoProducto;
 
   posicionSlider += direccion * anchoProducto;
+  console.log(posicionSlider);
 
-  if (posicionSlider > 0) {
-    posicionSlider = 0;
-  } else if (posicionSlider < -maxDesplazamiento) {
-    posicionSlider = -maxDesplazamiento;
-  }
-  
+  posicionSlider = Math.max(posicionSlider, -maxDesplazamiento);
+  posicionSlider = Math.min(posicionSlider, 0);
+
   slider.style.transform = `translateX(${posicionSlider}px)`;
+
+}
+
+/**
+ * Reinicia el slider
+ */
+function reiniciarSlider() {
+  const slider = document.getElementById('slider');
+  slider.style.transform = 'translateX(0)';
+}
+
+
+/**
+ * Crea los botones para poder manejar el slider
+ */
+function generarBotonesSlider() {
+  let botonAnterior = document.createElement("button");
+  botonAnterior.id = "anterior";
+  botonAnterior.innerHTML = "&#10094;";
+  botonAnterior.addEventListener("click", () => slideProductos(1));
+
+  let botonSiguiente = document.createElement("button");
+  botonSiguiente.id = "siguiente";
+  botonSiguiente.innerHTML = "&#10095;";
+  botonSiguiente.addEventListener("click", () => slideProductos(-1));
+
+  let sliderContainer = document.getElementById("slider-container");
+  sliderContainer.insertAdjacentElement("beforebegin", botonAnterior);
+  sliderContainer.insertAdjacentElement("afterend", botonSiguiente);
 }
