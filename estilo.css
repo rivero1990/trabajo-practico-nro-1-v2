@@ -62,8 +62,8 @@
 
 #slider-container {
     overflow: hidden;
-    width: 1358px;
-    height: 400px;
+    width: 46.9%;
+    height: 360px;
     margin: auto;
 }
 
@@ -72,7 +72,6 @@
     margin: auto;
     display: flex;
     width: fit-content;
-    justify-content: center;
 }
 
 #anterior,
@@ -80,7 +79,7 @@
     position: absolute;
     top: 100%;
     transform: translateY(-50%);
-    margin: 0 28px;
+    margin: 0 330px;
     padding: 10px;
     background-color: springgreen;
     border: 2px solid black;
@@ -106,11 +105,11 @@ h3 {
 #contenedor-elecciones {
     text-align: center;
     font-size: medium;
-    width: 500px;
+    width: 480px;
     border-radius: 5px;
     border: 3px solid black;
     background-color: rgb(240, 143, 108);
-    padding: 15px;
+    padding: 6px;
     margin: auto;
 }
 
@@ -125,16 +124,16 @@ select {
 label {
     font-size: medium;
     color: black;
-    font-size: larger;
+    font-size: medium;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin-top: 4px;
+    margin-top: 7px;
 }
 
 #boton-elecciones {
     border: 2px solid black;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-top: 20px;
-    width: 200px;
+    width: 150px;
     font-size: medium;
     font-family: Georgia, 'Times New Roman', Times, serif;
     background-color: thistle;
@@ -156,28 +155,31 @@ label {
     font-size: medium;
     align-items: center;
     margin-top: 30px;
+    width: 100%;
+    gap: 1px;
 }
 
 img {
-    width: 40px;
-    height: 100px;
+    width: 25px;
+    height: 90px;
 }
 
 .productos {
     flex: 0 0 auto;
-    max-width: 12rem;
-    height: 22rem;
+    max-width: 11rem;
+    height: 20.1rem;
     padding: 5px;
-    margin: 0 0 1px 1px;
     object-fit: cover;
     border: 2px solid black;
     background-color: white;
     text-align: center;
+    align-items: center;
 }
 
 .metodo-pago {
     text-align: center;
     display: grid;
+    width: 150px;
 }
 
 .metodo-pago select {
@@ -188,17 +190,18 @@ img {
 }
 
 .cantidades-permitidas select {
-    width: 178px;
+    width: 150px;
     font-size: medium;
 }
 
 .boton-compra {
-    background-color: lightgreen;
+    background-color: ghostwhite;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: medium;
-    border-radius: 10px;
+    font-size: small;
+    border-radius: 5px;
     border: 2px solid black;
     margin-top: 18px;
+    width: 150px;
 }
 
 .bg-body-tertiary {
