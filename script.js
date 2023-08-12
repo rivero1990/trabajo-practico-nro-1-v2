@@ -67,7 +67,7 @@ function muestraInfoCompra() {
 
   generaCssInfoCompra();
   mostrarProductos()
-  ColoresProductos()
+  coloresProductos()
   agregarMetodoPago()
   agregarCantidadPermitida()
   agregarBotonCompra()
@@ -94,8 +94,8 @@ function mostrarProductos() {
 
   generaHtmlProductos(cantidadProductos);
   reiniciarSlider();
-  generarBotonesSlider();
-  
+  crearBotonesSlider();
+
 }
 
 /** Inserta todas las imagenes y html a cada contenedor de los productos
@@ -157,7 +157,7 @@ function creaImgProductos(imgProductos, i) {
 /**
  * Recibe y aplica la opcion de colores seleccionada a cada uno de los productos
  */
-function ColoresProductos() {
+function coloresProductos() {
 
   const opcionesColores = selectColores.value;
   const coloresRecibidos = conversionColores[opcionesColores].split("-");
@@ -169,18 +169,9 @@ function ColoresProductos() {
   }
 }
 
+
 function agregarMetodoPago() {
   const aplicarMetPago = document.querySelectorAll(".productos");
-
-  generaHtmlMetPago(aplicarMetPago);
-}
-
-/** Crea e inserta las opciones de pago en cada uno de los productos
- * 
- * @param {*HtmltElement} aplicarMetPago titulos y opciones de pago de todos los productos
- */
-function generaHtmlMetPago(aplicarMetPago) {
-
   let contenedorMetodoPago = "contenedor metodos de pago por def";
 
   for (let i = 0; i < aplicarMetPago.length; i++) {
@@ -201,14 +192,6 @@ function generaHtmlMetPago(aplicarMetPago) {
 
 
 function agregarCantidadPermitida() {
-
-  generaHtmlCantPermtida();
-}
-
-/**
- * Crea e inserta los elementos html de la cantidad permitida por producto seleccionada a cada producto
- */
-function generaHtmlCantPermtida() {
 
   const aplicarCantPermitida = document.querySelectorAll(".productos");
   let contenedoresCantidades = "contenedor cantidad permitida por def";
@@ -270,8 +253,8 @@ function ComprarProducto(event) {
 }
 
 /**
- * Ejecuta el slider al contenedor de los productos
- * @param {*} direccion permite el desplazamiento del slider 
+ * Slider de los contenedores de los productos
+ * @param {*} direccion permite la ejecucion del slider
  */
 function slideProductos(direccion) {
   let slider = document.getElementById("slider");
@@ -281,7 +264,6 @@ function slideProductos(direccion) {
   let maxDesplazamiento = (document.querySelectorAll(".productos").length - productosVisibles) * anchoProducto;
 
   posicionSlider += direccion * anchoProducto;
-  console.log(posicionSlider);
 
   posicionSlider = Math.max(posicionSlider, -maxDesplazamiento);
   posicionSlider = Math.min(posicionSlider, 0);
@@ -291,22 +273,25 @@ function slideProductos(direccion) {
 }
 
 /**
- * Reinicia el slider
- */
-function reiniciarSlider() {
-  const slider = document.getElementById('slider');
-  slider.style.transform = 'translateX(0)';
-}
-
-
-/**
  * Crea los botones para poder manejar el slider
  */
-function generarBotonesSlider() {
+function crearBotonesSlider() {
   let botonAnterior = document.createElement("button");
   let botonSiguiente = document.createElement("button");
   let sliderContainer = document.getElementById("slider-container");
-  
+
+  funcionalidadBotones(botonAnterior, botonSiguiente);
+
+  sliderContainer.insertAdjacentElement("beforebegin", botonAnterior);
+  sliderContainer.insertAdjacentElement("afterend", botonSiguiente);
+}
+
+/**
+ * 
+ * @param {*HtmltElement} botonAnterior permite el desplazamiento hacia el siguiente producto
+ * @param {*HtmltElement} botonSiguiente permite el desplazamiento hacia el producto anterior
+ */
+function funcionalidadBotones(botonAnterior, botonSiguiente) {
   botonAnterior.id = "anterior";
   botonAnterior.innerHTML = "&#10094;";
   botonAnterior.addEventListener("click", () => slideProductos(1));
@@ -314,7 +299,12 @@ function generarBotonesSlider() {
   botonSiguiente.id = "siguiente";
   botonSiguiente.innerHTML = "&#10095;";
   botonSiguiente.addEventListener("click", () => slideProductos(-1));
+}
 
-  sliderContainer.insertAdjacentElement("beforebegin", botonAnterior);
-  sliderContainer.insertAdjacentElement("afterend", botonSiguiente);
+/**
+ * Reinicia el slider
+ */
+function reiniciarSlider() {
+  const slider = document.getElementById('slider');
+  slider.style.transform = 'translateX(0)';
 }
