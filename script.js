@@ -17,13 +17,13 @@ let posicionSlider = 0;
 
 
 const IMAGEN_1 = "https://th.bing.com/th/id/OIP.MEN6rI9xH5OaSRv585rDQgHaHa?w=202&h=202&c=7&r=0&o=5&dpr=1.3&pid=1.7";
-const IMAGEN_2 = "https://th.bing.com/th/id/OIP.HslV9rmsVL4IKIHI0NejvQHaHa?w=165&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7";
+const IMAGEN_2 = "https://th.bing.com/th/id/OIP.43fDU7GzpItFI96cGVt4swHaHy?w=165&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7";
 const IMAGEN_3 = "https://biolieve.net/wp-content/uploads/2017/06/agua-kefir-higo-limon-300x300.png";
-const IMAGEN_4 = "https://th.bing.com/th/id/OIP.7QBHzLj30tQrvkggmsu_6QHaHa?w=202&h=202&c=7&r=0&o=5&dpr=1.3&pid=1.7";
+const IMAGEN_4 = "https://th.bing.com/th?id=OIP.V5gmWXmO5ev3XFF2KxB3uQHaGR&w=271&h=230&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2";
 const IMAGEN_5 = "https://th.bing.com/th/id/OIP.bljCk18c-C2d_zzalpn9cAHaHa?w=175&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7";
 const IMAGEN_6 = "https://th.bing.com/th/id/OIP.U0S7WotgXEcH5jcGsqhrQAHaLH?w=141&h=212&c=7&r=0&o=5&dpr=1.3&pid=1.7";
 const IMAGEN_7 = "https://th.bing.com/th/id/OIP.4mcN6r_vuva_AconAFJRTgHaHa?w=186&h=186&c=7&r=0&o=5&dpr=1.3&pid=1.7";
-const IMAGEN_8 = "https://th.bing.com/th/id/OIP.V7erebbgETw1uU8CnLtDXwHaHa?w=153&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7";
+const IMAGEN_8 = "https://th.bing.com/th?id=OIP.ajIvGNy0-9IO8Vzvm5HkSAHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=1.3&pid=3.1&rm=2";
 const IMAGEN_9 = "https://th.bing.com/th/id/OIP.dNWaYXxxEfY957YxHm6zXQHaHa?w=185&h=185&c=7&r=0&o=5&dpr=1.3&pid=1.7";
 const IMAGEN_10 = "https://th.bing.com/th/id/OIP.b-v_FCsz2LptlfE0KiOdjwHaHa?w=175&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7";
 
@@ -91,7 +91,7 @@ function mostrarProductos() {
   let cantidadProductos = parseInt(selectCantProductos.value);
 
   compraRealizada.innerHTML = "";
-
+  
   generaHtmlProductos(cantidadProductos);
   reiniciarSlider();
   crearBotonesSlider();
@@ -169,7 +169,9 @@ function coloresProductos() {
   }
 }
 
-
+/**
+ * Agrega el metodo de pago a cada uno de los contenedores
+ */
 function agregarMetodoPago() {
   const aplicarMetPago = document.querySelectorAll(".productos");
   let contenedorMetodoPago = "contenedor metodos de pago por def";
@@ -192,7 +194,7 @@ function agregarMetodoPago() {
 
 
 function agregarCantidadPermitida() {
-
+  
   const aplicarCantPermitida = document.querySelectorAll(".productos");
   let contenedoresCantidades = "contenedor cantidad permitida por def";
   const cantRecibidas = parseInt(selectCantPermitida.value);
@@ -204,13 +206,21 @@ function agregarCantidadPermitida() {
     contenedoresCantidades.appendChild(document.createElement("label")).textContent = "Seleccione cantidad";
     selectCantidades = document.createElement("select");
 
-    for (let i = 0; i < cantRecibidas; i++) {
-      selectCantidades.appendChild(document.createElement("option")).textContent = i + 1;
-      selectCantidades.lastChild.value = i + 1;
-    }
+    cantidadPermitidaRecibida(cantRecibidas);
 
     contenedoresCantidades.appendChild(selectCantidades);
     aplicarCantPermitida[i].appendChild(contenedoresCantidades);
+  }
+}
+
+/**
+ * Recibe la cantidad permitida por producto seleccionada
+ * @param {*} cantRecibidas agrega a los contenedores de los productos la cantidad permtida
+ */
+function cantidadPermitidaRecibida(cantRecibidas) {
+  for (let i = 0; i < cantRecibidas; i++) {
+    selectCantidades.appendChild(document.createElement("option")).textContent = i + 1;
+    selectCantidades.lastChild.value = i + 1;
   }
 }
 
@@ -306,5 +316,11 @@ function funcionalidadBotones(botonAnterior, botonSiguiente) {
  */
 function reiniciarSlider() {
   const slider = document.getElementById('slider');
-  slider.style.transform = 'translateX(0)';
+
+  if (slider.dataset.cantidadProductos !== selectCantProductos.value) {
+    slider.dataset.cantidadProductos = selectCantProductos.value;
+    slider.style.transform = 'translateX(0)';
+  }
 }
+
+
